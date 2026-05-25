@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="KaryaSiddhi.Tests/KaryaSiddhi.Tests.csproj" Id="b43ee097-17d3-4af8-8ca4-c34c00c6d007" />
+  <Project Path="KaryaSiddhi/KaryaSiddhi.csproj" />
+</Solution>
