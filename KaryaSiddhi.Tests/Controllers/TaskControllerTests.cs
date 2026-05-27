@@ -68,7 +68,7 @@ namespace KaryasiddhiTests.Controllers
         {
             var context = GetDbContext();
 
-            var task = new Tasks { Title = "Old" };
+            var task = new Tasks { Status = false };
             context.TasksItem.Add(task);
             await context.SaveChangesAsync();
 
@@ -77,14 +77,14 @@ namespace KaryasiddhiTests.Controllers
             var updated = new Tasks
             {
                 Id = task.Id,
-                Title = "Updated"
+                Status = true
             };
 
             await controller.PutTask(task.Id, updated);
 
             var result = context.TasksItem.First();
 
-            Assert.Equal("Updated", result.Title);
+            Assert.Equal(true, result.Status);
         }
 
         [Fact]
@@ -96,6 +96,7 @@ namespace KaryasiddhiTests.Controllers
             await context.SaveChangesAsync();
 
             var controller = new TasksController(context);
+            await controller.DeleteTask(1);
 
             Assert.Empty(context.TasksItem);
         }
