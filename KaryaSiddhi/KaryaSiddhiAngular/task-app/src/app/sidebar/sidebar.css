@@ -1,0 +1,45 @@
+.sidebar {
+  position: fixed;
+  top: 75px;
+  left: 0;
+  width: 90px;
+  height: calc(100vh - 75px);
+  background: #0f4c5c;
+  color: white;
+  transition: width 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar.open {
+  width: 260px;
+}
+
+.menu,
+.bottom-menu {
+  list-style: none;
+  padding: 25px 15px;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.sidebar li:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar i {
+  font-size: 22px;
+}
+
+.sidebar span {
+  font-size: 16px;
+  font-weight: 500;
+}

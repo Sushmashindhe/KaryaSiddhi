@@ -1,0 +1,85 @@
+<div class="dashboard-header">
+  <div class="date">{{ currentDate }}</div>
+  <div class="greeting">{{ greeting }}, Sush</div>
+</div>
+
+<div class="top-row">
+
+
+  <div class="dropdown" (click)="toggleDropdown()">
+    {{ selectedFilter }}
+    <i class="bi bi-caret-down-fill"></i>
+
+    @if (isDropdownOpen) {
+    <ul class="dropdown-menu" (click)="$event.stopPropagation()">
+      <li (click)="selectFilter('Today')">Today</li>
+      <li (click)="selectFilter('This Week')">This Week</li>
+      <li (click)="selectFilter('This Month')">This Month</li>
+      <li (click)="selectFilter('Last Week')">Last Week</li>
+    </ul>
+    }
+  </div>
+
+
+  <div class="stat">
+    <i class="bi bi-check-circle"></i>
+    Tasks completed: {{ completedTaskCount$ | async }}
+  </div>
+
+  <div class="stat">
+    <i class="bi bi-person"></i>
+    <span class="task-count">
+      Tasks assigned: {{ taskCount$ | async }}
+    </span>
+  </div>
+
+</div>
+
+
+<div class="priority-section">
+
+  <div class="priority-header">
+    <div class="title">
+      My Priorities
+      <span>({{ selectedFilter }} – high priority)</span>
+    </div>
+
+    <button class="add-btn" [routerLink]="'/add-task'">
+      <i class="bi bi-plus"></i>
+    </button>
+  </div>
+
+</div>
+
+
+@let tasks = (filteredTasks$ | async) ?? [];
+
+@if (tasks.length > 0) {
+
+<div class="task-container">
+
+  <div class="task-header">
+    <span>Title</span>
+    <span>Description</span>
+    <span>Priority</span>
+    <span>Due Date</span>
+  </div>
+
+  @for (task of tasks; track task.id) {
+  <div class="task-row">
+    <span>{{ task.title }}</span>
+    <span>{{ task.description }}</span>
+    <span> {{ taskService.getPriorityLabel(task.priority) }}</span>
+    <span>{{ task.dueDate }}</span>
+  </div>
+  }
+
+</div>
+
+} @else {
+
+<div class="empty-state">
+  No high priority tasks for {{ selectedFilter }}
+</div>
+
+}

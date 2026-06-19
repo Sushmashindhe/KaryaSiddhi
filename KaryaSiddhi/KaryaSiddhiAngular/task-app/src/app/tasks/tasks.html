@@ -1,0 +1,91 @@
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <h2>Tasks</h2>
+    <button class="add-btn" [routerLink]="'/add-task'">+ Add</button>
+  </div>
+
+ <div class="filters">
+
+  <div class="filter-group">
+    <label>Status</label>
+    <select [(ngModel)]="filters.status" (change)="loadTasks()">
+      <option value="all">All Status</option>
+      <option value="completed">Completed</option>
+      <option value="pending">Pending</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label>Priority</label>
+    <select [(ngModel)]="filters.priority" (change)="loadTasks()">
+      <option value="all">All Priority</option>
+      <option [ngValue]="1">High</option>
+      <option [ngValue]="2">Medium</option>
+      <option [ngValue]="3">Low</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label>Sort By</label>
+    <select [(ngModel)]="sortOrder" (change)="loadTasks()">
+      <option value="near">Nearest Due</option>
+      <option value="far">Farthest Due</option>
+    </select>
+  </div>
+
+</div>
+  <!-- Table -->
+  <table class="task-table">
+
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Priority</th>
+        <th>Due Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @if ((filteredTasks$ | async)?.length === 0) {
+        <tr>
+          <td colspan="5" class="empty">No tasks available</td>
+        </tr>
+      }
+
+      <tr *ngFor="let task of (filteredTasks$ | async); trackBy: trackById">
+
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+
+        <td>
+          <span
+            [ngClass]="{
+              'high': task.priority === 1,
+              'medium': task.priority === 2,
+              'low': task.priority === 3
+            }">
+            {{ taskService.getPriorityLabel(task.priority) }}
+          </span>
+        </td>
+
+        <td>{{ task.dueDate }}</td>
+
+        <td>
+          <button
+            (click)="toggleStatus(task)"
+            [disabled]="task.status"
+            [ngClass]="task.status ? 'done' : 'pending'">
+            {{ task.status ? 'Completed' : 'Pending' }}
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>

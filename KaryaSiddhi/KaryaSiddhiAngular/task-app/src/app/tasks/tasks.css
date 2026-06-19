@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+.page {
+  width: 100%;
+  padding: 30px 60px;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.add-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #218838;
+}
+
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.filters select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 160px;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.task-table th {
+  text-align: left;
+  padding: 14px;
+  font-size: 15px;
+  background: #f1f3f5;
+  border-bottom: 2px solid #ddd;
+}
+
+.task-table td {
+  padding: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.task-table tr:hover {
+  background: #fafafa;
+}
+
+.high {
+  color: #d9534f;
+  font-weight: 600;
+}
+
+.medium {
+  color: #f0ad4e;
+  font-weight: 600;
+}
+
+.low {
+  color: #28a745;
+  font-weight: 600;
+}
+
+button {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.pending {
+  background: #ffc107;
+}
+
+.done {
+  background: #28a745;
+  color: white;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #888;
+}
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  color: #120f0f;
+}
+
+.filter-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}

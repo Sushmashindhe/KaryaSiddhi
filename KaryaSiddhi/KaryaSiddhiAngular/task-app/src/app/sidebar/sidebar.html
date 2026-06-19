@@ -1,0 +1,27 @@
+<aside class="sidebar" [class.open]="isOpen">
+
+  <ul class="menu">
+    <li routerLink="">
+      <i class="bi bi-house"></i>
+      @if (isOpen) {
+      <span>Home</span>
+      }
+    </li>
+
+    <li routerLink="/tasks">
+      <i class="bi bi-list-task"></i>
+      @if (isOpen) {
+      <span>My Tasks</span>
+      }
+    </li>
+  </ul>
+
+  <ul class="bottom-menu">
+    <li routerLink="/help" routerLinkActive="active">
+      <i class="bi bi-question-circle"></i>
+      @if (isOpen) {
+      <span>Help</span>
+      }
+    </li>
+  </ul>
+</aside>

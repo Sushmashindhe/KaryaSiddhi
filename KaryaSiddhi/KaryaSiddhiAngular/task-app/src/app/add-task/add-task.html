@@ -1,0 +1,50 @@
+<div class="page-container">
+
+    <h1 class="title">Add New Task</h1>
+
+    <form #taskForm="ngForm" class="form-card">
+
+        
+         <label>
+          Title <span class="required">&#42;</span>
+        </label>
+        <input type="text" name="title" [(ngModel)]="newTask.title" required>
+
+        
+        <label>Description</label>
+        <input type="text" name="description" [(ngModel)]="newTask.description">
+
+        
+        <label>
+            Priority <span class="required">&#42;</span>
+        </label>
+        <select [(ngModel)]="newTask.priority" name="priority" required>
+            <option value="" disabled>Select Priority</option>
+            <option *ngFor="let p of priorityOptions" [ngValue]="p.id">
+                {{ p.name }}
+            </option>
+        </select>
+
+        
+        <label>
+            Due Date <span class="required">&#42;</span>
+        </label>
+        <input type="date" name="dueDate" [(ngModel)]="newTask.dueDate" required>
+
+        
+        <div class="actions">
+            <button type="button" class="save-btn" (click)="saveTask(taskForm)" [disabled]="taskForm.invalid" [ngClass]="{
+    'disabled-btn': taskForm.invalid,
+    'enabled-btn': taskForm.valid
+  }">
+                Save
+            </button>
+
+            <button type="button" class="cancel-btn" (click)="cancel()">
+                Cancel
+            </button>
+        </div>
+
+    </form>
+
+</div>
